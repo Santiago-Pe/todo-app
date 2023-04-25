@@ -11,16 +11,24 @@ import TodoList from "../TodoList/TodoList";
 const TodoApp = () => {
     const initialTodos = [
         {id: 1, task: 'Clean bathroom', completed: false},
-        {id: 2, task: 'Clean bedroom', completed: false},
+        {id: 2, task: 'Clean bedroom', completed: true},
         {id: 3, task: 'Clean kitchen', completed: false}
     ]
     /* ---------- States ---------- */
     const [todos, setTodos] = useState(initialTodos);
 
     /* ---------- Functions ---------- */
-    const addTodo = newTodoText => {
+
+    // Add todo
+    const addTodo = (newTodoText) => {
         setTodos([...todos, {id: 4, task: newTodoText, completed: false}])
     }
+    // Delet todo
+    const removeTodo = (todoId) => {
+        const newTodos = todos.filter( t => t.id !== todoId);
+        setTodos(newTodos)
+    }
+    // Edit todo
 
     /* ---------- Render ---------- */
     return(
@@ -46,7 +54,7 @@ const TodoApp = () => {
         <Grid  container justifyContent='center' style={{marginTop: '2rem'}}>
             <Grid item xs={11} md={8} lg={4}>
                 <TodoForm addTodo={addTodo}/>
-                <TodoList todos={todos}/>
+                <TodoList todos={todos} removeTodo={removeTodo}/>
             </Grid>
         </Grid>
         </Paper>

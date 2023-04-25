@@ -1,11 +1,11 @@
 /* ---------- Dependencies ---------- */
 import React from "react";
-import {Paper, List, Divider} from "@mui/material";
+import {Paper, List} from "@mui/material";
 import TodoItem from "../TodoItem/TodoItem";
 
-const TodoList = (props) => {
+const TodoList = ({todos, removeTodo}) => {
     /* ---------- Destructuring Props / States ---------- */
-    const {todos} = props
+
 
 
     /* ---------- Render ---------- */
@@ -14,8 +14,7 @@ const TodoList = (props) => {
         <List>
             {todos.map(t => (
                 <>
-                    <TodoItem task={t.task} completed={t.completed} key={t.id}/>
-                    <Divider/>
+                    <TodoItem task={t.task} completed={t.completed} key={t.id} removeTodo={removeTodo} id={t.id}/>
                 </>
             ))}
 
