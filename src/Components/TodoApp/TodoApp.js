@@ -2,10 +2,12 @@
 import React, {useState} from "react";
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import { Typography, AppBar, Toolbar, Paper, Grid } from "@mui/material";
-import TodoForm from "../TodoForm/TodoForm";
+import { v4 as uuidv4 } from 'uuid';
+
 
 /* ---------- Chiled Component ---------- */
 import TodoList from "../TodoList/TodoList";
+import TodoForm from "../TodoForm/TodoForm";
 
 /* ---------- Component ---------- */
 const TodoApp = () => {
@@ -21,12 +23,20 @@ const TodoApp = () => {
 
     // Add todo
     const addTodo = (newTodoText) => {
-        setTodos([...todos, {id: 4, task: newTodoText, completed: false}])
+        setTodos([...todos, {id: uuidv4(), task: newTodoText, completed: false}]);
     }
     // Delet todo
     const removeTodo = (todoId) => {
-        const newTodos = todos.filter( t => t.id !== todoId);
-        setTodos(newTodos)
+        const updatedTodos = todos.filter( t => t.id !== todoId);
+        setTodos(updatedTodos)
+    }
+
+    // Toggle todo
+    const toggleTodo = todoID => {
+        const updatedTodos = todos.map( t => 
+            t.id === todoID ? {...t, completed: !t.completed} : t
+        )
+        setTodos(updatedTodos)
     }
     // Edit todo
 
@@ -54,7 +64,7 @@ const TodoApp = () => {
         <Grid  container justifyContent='center' style={{marginTop: '2rem'}}>
             <Grid item xs={11} md={8} lg={4}>
                 <TodoForm addTodo={addTodo}/>
-                <TodoList todos={todos} removeTodo={removeTodo}/>
+                <TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo}/>
             </Grid>
         </Grid>
         </Paper>

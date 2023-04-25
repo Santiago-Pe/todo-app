@@ -6,7 +6,7 @@ import  EditIcon from '@mui/icons-material/Edit';
 
 // import {Paper, List, ListItem, Divider, ListItemText} from "@mui/material";
 
-const TodoItem = ({task, completed, removeTodo , id}) => {
+const TodoItem = ({task, completed, removeTodo , id, toggleTodo}) => {
 
 
 
@@ -14,7 +14,7 @@ const TodoItem = ({task, completed, removeTodo , id}) => {
     return(
         <>
         <ListItem>
-        <Checkbox  checked={completed} tabIndex={-1}/>
+        <Checkbox  checked={completed} tabIndex={-1} onClick={() => toggleTodo(id)}/>
         <ListItemText style={{textDecoration: completed ? 'line-through' : 'none'}}>
             {task}
         </ListItemText>
