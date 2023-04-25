@@ -3,7 +3,7 @@ import React from "react";
 import {Paper, List} from "@mui/material";
 import TodoItem from "../TodoItem/TodoItem";
 
-const TodoList = ({todos, removeTodo, toggleTodo}) => {
+const TodoList = ({todos, removeTodo, toggleTodo, editTodo}) => {
     /* ---------- Destructuring Props / States ---------- */
 
 
@@ -21,6 +21,7 @@ const TodoList = ({todos, removeTodo, toggleTodo}) => {
                 removeTodo={removeTodo}
                 id={t.id}
                 toggleTodo={toggleTodo}
+                editTodo={editTodo}
               />
             </>
           ))}

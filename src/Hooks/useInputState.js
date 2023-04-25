@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default initialValue => {
+function useInputState (initialValue) {
 
     const [value, setValue] = useState(initialValue);
 
@@ -9,3 +9,5 @@ export default initialValue => {
 
     return [value, handleChange, reset]
 }
+
+export default  useInputState

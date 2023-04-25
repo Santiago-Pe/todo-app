@@ -30,45 +30,53 @@ const TodoApp = () => {
         const updatedTodos = todos.filter( t => t.id !== todoId);
         setTodos(updatedTodos)
     }
-
     // Toggle todo
-    const toggleTodo = todoID => {
+    const toggleTodo = (todoID) => {
         const updatedTodos = todos.map( t => 
             t.id === todoID ? {...t, completed: !t.completed} : t
         )
         setTodos(updatedTodos)
     }
     // Edit todo
+    const editTodo = (todoID, newTask) => {
+        const updatedTodos = todos.map( t => 
+            t.id === todoID ? {...t, task: newTask} : t
+        )
+        setTodos(updatedTodos)
+    }
 
     /* ---------- Render ---------- */
-    return(
-        <Paper 
+    return (
+      <Paper
         style={{
-            padding: 0,
-            margin: 0,
-            height: '100vh',
-            backgroundColor: '#fafafa'
-
+          padding: 0,
+          margin: 0,
+          height: "100vh",
+          backgroundColor: "#fafafa",
         }}
         elevation={0}
-        >
-        <AppBar color='primary' position='static' style={{height: '4rem'}}>
-            <Toolbar>
-                <Typography color='inherit' style={{marginRight: '1rem'}}>
-                    TODO APP
-                </Typography>
-                <PlaylistAddCheckIcon  fontSize='large'/>
-                
-            </Toolbar>
+      >
+        <AppBar color="primary" position="static" style={{ height: "4rem" }}>
+          <Toolbar>
+            <Typography color="inherit" style={{ marginRight: "1rem" }}>
+              TODO APP
+            </Typography>
+            <PlaylistAddCheckIcon fontSize="large" />
+          </Toolbar>
         </AppBar>
-        <Grid  container justifyContent='center' style={{marginTop: '2rem'}}>
-            <Grid item xs={11} md={8} lg={4}>
-                <TodoForm addTodo={addTodo}/>
-                <TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo}/>
-            </Grid>
+        <Grid container justifyContent="center" style={{ marginTop: "2rem" }}>
+          <Grid item xs={11} md={8} lg={4}>
+            <TodoForm addTodo={addTodo} />
+            <TodoList
+              todos={todos}
+              removeTodo={removeTodo}
+              toggleTodo={toggleTodo}
+              editTodo={editTodo}
+            />
+          </Grid>
         </Grid>
-        </Paper>
-    )
+      </Paper>
+    );
 }
 
 export default TodoApp;
