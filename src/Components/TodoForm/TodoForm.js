@@ -13,20 +13,30 @@ const [value, handleChange, reset] = useInputState('');
 /* ---------- Functions ---------- */
 /* ---------- Render ---------- */
 
-return(
-    <Paper>
-        <form onSubmit={ (e) => {
-            e.preventDefault();
-            addTodo(value);
-            reset();
-        }}>
-            <TextField value={value} onChange={handleChange}/>
-        <Button></Button>
-        </form>
-        
-    </Paper>
-    
-)
+return (
+  <Paper style={{ margin: "1rem 0" }}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        addTodo(value);
+        reset();
+      }}
+      style={{ padding: "1rem" }}
+    >
+      <TextField
+        value={value}
+        onChange={handleChange}
+        fullWidth={true}
+        margin="normal"
+        label="Add new todo"
+        size="small"
+        required={true}
+        variant='filled'
+      />
+      <Button></Button>
+    </form>
+  </Paper>
+);
 
 }
 

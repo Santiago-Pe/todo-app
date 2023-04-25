@@ -34,17 +34,21 @@ const TodoApp = () => {
         }}
         elevation={0}
         >
-        <AppBar color='primary' position='static' style={{height: '64px'}}>
+        <AppBar color='primary' position='static' style={{height: '4rem'}}>
             <Toolbar>
-                <Typography color='inherit' style={{marginRight: '20px'}}>
+                <Typography color='inherit' style={{marginRight: '1rem'}}>
                     TODO APP
                 </Typography>
                 <PlaylistAddCheckIcon  fontSize='large'/>
                 
             </Toolbar>
         </AppBar>
-        <TodoList todos={todos}/>
-        <TodoForm addTodo={addTodo}/>
+        <Grid  container justifyContent='center' style={{marginTop: '2rem'}}>
+            <Grid item xs={11} md={8} lg={4}>
+                <TodoForm addTodo={addTodo}/>
+                <TodoList todos={todos}/>
+            </Grid>
+        </Grid>
         </Paper>
     )
 }
