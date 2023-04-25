@@ -1,11 +1,24 @@
 /* ---------- Dependencies ---------- */
-import React from "react";
+import React, {useState} from "react";
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import { Typography, AppBar, Toolbar, Paper, Grid } from "@mui/material";
 
+/* ---------- Chiled Component ---------- */
+import TodoList from "../TodoList/TodoList";
 
+/* ---------- Component ---------- */
 const TodoApp = () => {
+    const initialTodos = [
+        {id: 1, task: 'Clean bathroom', completed: false},
+        {id: 2, task: 'Clean bedroom', completed: false},
+        {id: 3, task: 'Clean kitchen', completed: false}
+    ]
+    /* ---------- States ---------- */
+    const [todos, setTodos] = useState(initialTodos);
 
+    /* ---------- Functions ---------- */
+
+    /* ---------- Render ---------- */
     return(
         <Paper 
         style={{
@@ -23,9 +36,10 @@ const TodoApp = () => {
                     TODO APP
                 </Typography>
                 <PlaylistAddCheckIcon  fontSize='large'/>
+                
             </Toolbar>
         </AppBar>
-
+        <TodoList todos={todos}/>
         </Paper>
     )
 }
