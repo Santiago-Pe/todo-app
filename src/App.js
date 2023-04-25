@@ -1,3 +1,4 @@
+/* ---------- Dependencies ---------- */
 import TodoApp from './Components/TodoApp/TodoApp';
 
 function App() {

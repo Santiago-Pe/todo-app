@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import { Typography, AppBar, Toolbar, Paper, Grid } from "@mui/material";
+import TodoForm from "../TodoForm/TodoForm";
 
 /* ---------- Chiled Component ---------- */
 import TodoList from "../TodoList/TodoList";
@@ -17,6 +18,9 @@ const TodoApp = () => {
     const [todos, setTodos] = useState(initialTodos);
 
     /* ---------- Functions ---------- */
+    const addTodo = newTodoText => {
+        setTodos([...todos, {id: 4, task: newTodoText, completed: false}])
+    }
 
     /* ---------- Render ---------- */
     return(
@@ -40,6 +44,7 @@ const TodoApp = () => {
             </Toolbar>
         </AppBar>
         <TodoList todos={todos}/>
+        <TodoForm addTodo={addTodo}/>
         </Paper>
     )
 }
