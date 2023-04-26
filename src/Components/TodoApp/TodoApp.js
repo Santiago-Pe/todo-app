@@ -1,5 +1,4 @@
 /* ---------- Dependencies ---------- */
-import React, {useEffect} from "react";
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import { Typography, AppBar, Toolbar, Paper, Grid } from "@mui/material";
 
@@ -13,15 +12,10 @@ import TodoForm from "../TodoForm/TodoForm";
 
 /* ---------- Component ---------- */
 const TodoApp = () => {
-    const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]'); 
+    const initialTodos = [{id: 1, task: 'First todo', completed: false}]
     const {todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodoState(initialTodos)
    
 
-    /* ---------- Use Effect ---------- */
-    useEffect(() => {
-      window.localStorage.setItem('todos', JSON.stringify(todos))
-    }, [todos])
-  
     /* ---------- Render ---------- */
     return (
       <Paper
