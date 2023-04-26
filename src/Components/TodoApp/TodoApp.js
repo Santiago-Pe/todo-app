@@ -1,8 +1,10 @@
 /* ---------- Dependencies ---------- */
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import { Typography, AppBar, Toolbar, Paper, Grid } from "@mui/material";
-import { v4 as uuidv4 } from 'uuid';
+
+/* ---------- Hooks ---------- */
+import useTodoState from "../../Hooks/useTodoState";
 
 
 /* ---------- Chiled Component ---------- */
@@ -11,40 +13,15 @@ import TodoForm from "../TodoForm/TodoForm";
 
 /* ---------- Component ---------- */
 const TodoApp = () => {
-    const initialTodos = [
-        {id: 1, task: 'Clean bathroom', completed: false},
-        {id: 2, task: 'Clean bedroom', completed: true},
-        {id: 3, task: 'Clean kitchen', completed: false}
-    ]
-    /* ---------- States ---------- */
-    const [todos, setTodos] = useState(initialTodos);
+    const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]'); 
+    const {todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodoState(initialTodos)
+   
 
-    /* ---------- Functions ---------- */
-
-    // Add todo
-    const addTodo = (newTodoText) => {
-        setTodos([...todos, {id: uuidv4(), task: newTodoText, completed: false}]);
-    }
-    // Delet todo
-    const removeTodo = (todoId) => {
-        const updatedTodos = todos.filter( t => t.id !== todoId);
-        setTodos(updatedTodos)
-    }
-    // Toggle todo
-    const toggleTodo = (todoID) => {
-        const updatedTodos = todos.map( t => 
-            t.id === todoID ? {...t, completed: !t.completed} : t
-        )
-        setTodos(updatedTodos)
-    }
-    // Edit todo
-    const editTodo = (todoID, newTask) => {
-        const updatedTodos = todos.map( t => 
-            t.id === todoID ? {...t, task: newTask} : t
-        )
-        setTodos(updatedTodos)
-    }
-
+    /* ---------- Use Effect ---------- */
+    useEffect(() => {
+      window.localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos])
+  
     /* ---------- Render ---------- */
     return (
       <Paper

@@ -6,7 +6,6 @@ import {
   Checkbox,
   IconButton,
   ListItemSecondaryAction,
-  Divider,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
@@ -32,7 +31,8 @@ const TodoItem = ({
 
   /* ---------- Render ---------- */
   return (
-    <ListItem>
+
+    <ListItem style={{height: '70px'}}>
       {isEditing ? (
         <EditTodoForm initialValue={task} editTodo={editTodo} id={id} toggleEditForm={toggle}/>
       ) : (
@@ -55,7 +55,7 @@ const TodoItem = ({
             <EditIcon />
           </IconButton>
 
-          <Divider />
+          
         </>
       )}
     </ListItem>
