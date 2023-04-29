@@ -6,14 +6,14 @@ import {Paper, TextField, Button} from '@mui/material'
 import useInputState from '../../Hooks/useInputState'
 
 /* ---------- Context ---------- */
-import { TodosContext } from "../../Context/TodoContext";
+import { DispatchContext } from "../../Context/TodoContext";
 
 const TodoForm = () => {
 
 /* ---------- State ---------- */
 const [value, handleChange, reset] = useInputState('');
 
-const {dispatch} = useContext(TodosContext)
+const dispatch = useContext(DispatchContext)
 /* ---------- Functions ---------- */
 /* ---------- Render ---------- */
 

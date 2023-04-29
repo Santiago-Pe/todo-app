@@ -11,6 +11,7 @@ const defaultTodos = [
 ]
 /* ---------- Context ---------- */
 export const TodosContext = createContext();
+export const DispatchContext = createContext();
 
 /* ---------- Componente ---------- */
 export function TodosProvider (props) {
@@ -19,8 +20,10 @@ export function TodosProvider (props) {
 
 
     return(
-        <TodosContext.Provider value={{todos, dispatch}}>
-            {props.children}
+        <TodosContext.Provider value={todos}>
+            <DispatchContext.Provider value={dispatch}>
+                {props.children}
+            </DispatchContext.Provider>
         </TodosContext.Provider>
     )
 }

@@ -8,7 +8,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import useInputState from '../../Hooks/useInputState';
 
 /* ---------- Context ---------- */
-import { TodosContext } from "../../Context/TodoContext";
+import { DispatchContext } from "../../Context/TodoContext";
 
 /* ---------- Styles ---------- */
 import './EditTodoForm.css'
@@ -21,7 +21,7 @@ const EditTodoForm = ({initialValue, id, toggleEditForm}) => {
 
 /* ---------- State ---------- */
 const [value, handleChange, reset] = useInputState(initialValue);
-const {dispatch} = useContext(TodosContext)
+const dispatch = useContext(DispatchContext)
 
 /* ---------- Functions ---------- */
 /* ---------- Render ---------- */

@@ -10,7 +10,7 @@ import { TodosContext } from "../../Context/TodoContext";
 
 const TodoList = () => {
     /* ---------- Destructuring Props / States ---------- */
-    const {todos} = useContext(TodosContext)
+    const todos = useContext(TodosContext)
 
 
     /* ---------- Render ---------- */
@@ -18,18 +18,20 @@ const TodoList = () => {
       return (
         <Paper>
           <List>
-            {todos.map((t, i) => (
-              <>
-                <TodoItem
-                  task={t.task}
-                  completed={t.completed}
-                  key={t.id}
-                  //{...todos}
-                  id={t.id}
-                />
-               { i < todos.length - 1 && <Divider />}
-              </>
-            ))}
+            {
+              todos.map((t, i) => (
+                <>
+                  <TodoItem
+                    task={t.task}
+                    completed={t.completed}
+                    key={t.id}
+                    //{...todos}
+                    id={t.id}
+                  />
+                  { i < todos.length - 1 && <Divider />}
+                </>
+              ))
+            }
           </List>
         </Paper>
       );

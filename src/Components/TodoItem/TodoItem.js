@@ -1,5 +1,5 @@
 /* ---------- Dependencies ---------- */
-import React, {useContext} from "react";
+import React, {useContext, memo} from "react";
 import {
   ListItem,
   ListItemText,
@@ -14,7 +14,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import EditTodoForm from "../EditTodoForm/EditTodoForm";
 
 /* ---------- Context ---------- */
-import { TodosContext } from "../../Context/TodoContext";
+import { DispatchContext } from "../../Context/TodoContext";
 
 /* ---------- Hooks ---------- */
 import useToggleState from "../../Hooks/useToggleState";
@@ -24,8 +24,9 @@ import useToggleState from "../../Hooks/useToggleState";
 const TodoItem = ({ task, completed, id }) => {
   /* ---------- State ---------- */
   const [isEditing, toggle] = useToggleState();
-  const {dispatch} = useContext(TodosContext)
+  const dispatch = useContext(DispatchContext)
 
+  console.log('re render:', id)
   /* ---------- Render ---------- */
   return (
 
@@ -59,4 +60,4 @@ const TodoItem = ({ task, completed, id }) => {
   );
 };
 
-export default TodoItem;
+export default memo(TodoItem);
