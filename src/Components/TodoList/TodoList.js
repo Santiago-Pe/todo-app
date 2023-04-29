@@ -1,11 +1,16 @@
 /* ---------- Dependencies ---------- */
-import React from "react";
+import React,{useContext} from "react";
 import {Paper, List, Divider} from "@mui/material";
+
+/* ---------- Childe Component ---------- */
 import TodoItem from "../TodoItem/TodoItem";
 
-const TodoList = ({todos, removeTodo, toggleTodo, editTodo}) => {
-    /* ---------- Destructuring Props / States ---------- */
+/* ---------- Context ---------- */
+import { TodosContext } from "../../Context/TodoContext";
 
+const TodoList = () => {
+    /* ---------- Destructuring Props / States ---------- */
+    const {todos} = useContext(TodosContext)
 
 
     /* ---------- Render ---------- */
@@ -19,10 +24,8 @@ const TodoList = ({todos, removeTodo, toggleTodo, editTodo}) => {
                   task={t.task}
                   completed={t.completed}
                   key={t.id}
-                  removeTodo={removeTodo}
+                  //{...todos}
                   id={t.id}
-                  toggleTodo={toggleTodo}
-                  editTodo={editTodo}
                 />
                { i < todos.length - 1 && <Divider />}
               </>

@@ -1,21 +1,19 @@
 /* ---------- Dependencies ---------- */
+import React from 'react';
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import { Typography, AppBar, Toolbar, Paper, Grid } from "@mui/material";
-
-/* ---------- Hooks ---------- */
-import useTodoState from "../../Hooks/useTodoState";
-
 
 /* ---------- Chiled Component ---------- */
 import TodoList from "../TodoList/TodoList";
 import TodoForm from "../TodoForm/TodoForm";
 
+/* ---------- Context ---------- */
+import { TodosProvider } from '../../Context/TodoContext';
+
+
 /* ---------- Component ---------- */
 const TodoApp = () => {
-    const initialTodos = [{id: 1, task: 'First todo', completed: false}]
-    const {todos, addTodo, removeTodo, toggleTodo, editTodo} = useTodoState(initialTodos)
    
-
     /* ---------- Render ---------- */
     return (
       <Paper
@@ -37,13 +35,10 @@ const TodoApp = () => {
         </AppBar>
         <Grid container justifyContent="center" style={{ marginTop: "2rem" }}>
           <Grid item xs={11} md={8} lg={4}>
-            <TodoForm addTodo={addTodo} />
-            <TodoList
-              todos={todos}
-              removeTodo={removeTodo}
-              toggleTodo={toggleTodo}
-              editTodo={editTodo}
-            />
+          <TodosProvider>
+            <TodoForm  />
+            <TodoList />
+          </TodosProvider>
           </Grid>
         </Grid>
       </Paper>

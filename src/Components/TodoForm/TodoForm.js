@@ -1,15 +1,19 @@
 /* ---------- Dependencies ---------- */
-import React from "react";
+import React, { useContext } from "react";
 import {Paper, TextField, Button} from '@mui/material'
 
 /* ---------- Hooks ---------- */
 import useInputState from '../../Hooks/useInputState'
 
-const TodoForm = ({addTodo}) => {
+/* ---------- Context ---------- */
+import { TodosContext } from "../../Context/TodoContext";
+
+const TodoForm = () => {
 
 /* ---------- State ---------- */
 const [value, handleChange, reset] = useInputState('');
 
+const {dispatch} = useContext(TodosContext)
 /* ---------- Functions ---------- */
 /* ---------- Render ---------- */
 
@@ -18,7 +22,7 @@ return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        addTodo(value);
+        dispatch({type: 'ADD', task: value});
         reset();
       }}
       style={{ padding: "1rem" }}

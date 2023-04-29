@@ -1,11 +1,14 @@
 /* ---------- Dependencies ---------- */
-import React from "react";
+import React, {useContext} from "react";
 import {TextField, IconButton} from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 
 /* ---------- Hooks ---------- */
 import useInputState from '../../Hooks/useInputState';
+
+/* ---------- Context ---------- */
+import { TodosContext } from "../../Context/TodoContext";
 
 /* ---------- Styles ---------- */
 import './EditTodoForm.css'
@@ -14,10 +17,11 @@ import './EditTodoForm.css'
 
 /* ---------- Hooks ---------- */
 
-const EditTodoForm = ({initialValue, editTodo, id, toggleEditForm}) => {
+const EditTodoForm = ({initialValue, id, toggleEditForm}) => {
 
 /* ---------- State ---------- */
 const [value, handleChange, reset] = useInputState(initialValue);
+const {dispatch} = useContext(TodosContext)
 
 /* ---------- Functions ---------- */
 /* ---------- Render ---------- */
@@ -27,7 +31,7 @@ return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        editTodo(id, value);
+        dispatch({type: 'EDIT', id: id, newTask: value})
         reset();
         toggleEditForm();
       }}
