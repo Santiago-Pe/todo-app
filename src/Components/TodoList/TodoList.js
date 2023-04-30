@@ -20,16 +20,14 @@ const TodoList = () => {
           <List>
             {
               todos.map((t, i) => (
-                <>
+                <div key={t.id}>
                   <TodoItem
                     task={t.task}
                     completed={t.completed}
-                    key={t.id}
-                    //{...todos}
                     id={t.id}
                   />
-                  { i < todos.length - 1 && <Divider />}
-                </>
+                  { i < todos.length - 1 && <Divider/>}
+                </div>
               ))
             }
           </List>

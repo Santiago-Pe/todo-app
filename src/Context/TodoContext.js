@@ -1,10 +1,13 @@
 /* ---------- Dependencies ---------- */
-import React, {createContext, useReducer} from "react";
+import React, {createContext} from "react";
 
 /* ---------- Reducers ---------- */
 import todosReducer from '../Reducers/TodosReducer'
 
-/* ---------- Reducers ---------- */
+/* ---------- Hooks ---------- */
+import useLocalStorageReducer from "../Hooks/useLocalStorageReducer";
+
+/* ---------- Initial Values ---------- */
 const defaultTodos = [
     {id: 1, task: 'Example todo', completed: true},
     {id: 2, task: 'Delete both todos', completed: false}
@@ -16,7 +19,7 @@ export const DispatchContext = createContext();
 /* ---------- Componente ---------- */
 export function TodosProvider (props) {
 
-    const [todos, dispatch] = useReducer(todosReducer, defaultTodos);
+    const [todos, dispatch] = useLocalStorageReducer('todos', defaultTodos, todosReducer);
 
 
     return(
